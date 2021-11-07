@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="page-banner home-banner">
+        <div class="row align-items-center flex-wrap-reverse h-100">
+            <div class="col-md-6 wow zoomIn">
+            <h5>Page Not Found</h5>
+            The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+        </div>
+        <div class="col-md-6 wow zoomIn">
+          <div class="img-fluid text-center">
+            <img src="{{url_for('static', filename='img/error404.jpg')}}" alt="" height="100%" width="100%">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

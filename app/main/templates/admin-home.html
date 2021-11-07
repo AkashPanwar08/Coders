@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="page-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card-service">
+            <div class="header">
+              <h5 class="text-secondary">Students</h5>
+            </div>
+            <div class="divider mx-auto"></div>
+            <div class="body">
+              <p>Add students to the database of students.</p><hr>
+              <a href="add-students" class="btn btn-primary">Add</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card-service">
+            <div class="header">
+              <h5 class="text-secondary">Subjects</h5>
+            </div>
+            <div class="divider mx-auto"></div>
+            <div class="body">
+              <p>Check and modify the subject list from database.</p><hr>
+              <a href="admin" class="btn btn-primary">Subjects</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card-service">
+            <div class="header">
+              <h5 class="text-secondary">Details</h5>
+            </div>
+            <div class="divider mx-auto"></div>
+            <div class="body">
+              <p>Check the details of the subject list from database.</p><hr>
+              <a href="student-details" class="btn btn-primary">Check</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+{% endblock %}

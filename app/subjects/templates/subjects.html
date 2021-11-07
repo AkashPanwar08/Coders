@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+      <div class="page-banner">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-md-6">
+            <nav aria-label="Breadcrumb">
+              <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                <li class="breadcrumb-item active">Subjects</li>
+              </ul>
+            </nav>
+            <h1 class="text-center">Subjects</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% if not subjects %}
+    <h2 class="text-primary text-center">Sorry, there is no subject for you.</h2>
+  {% endif %}
+  <div class="page-section">
+    <div class="container">
+      <div class="row">
+        {% for subject in subjects.query.filter_by(semester=sem) %}
+        {% if subject %}
+        <div class="col-lg-4">
+          <div class="card-service">
+            <div class="header">
+              <h5 class="text-secondary">{{ subject.name }}</h5>
+            </div>
+            <div class="divider mx-auto"></div>
+            <div class="body">
+              <p>{{ subject.discription }}</p>
+              <label for="file">Progress:</label><br>
+              <progress id="file" value="32" max="100"> 32% </progress><hr>
+              <a href="problems-{{subject.id}}" class="btn btn-primary">Problems</a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+{% endblock %}

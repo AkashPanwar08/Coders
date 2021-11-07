@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+  <div class="row align-items-center flex-wrap-reverse h-100">
+    <div class="col-md-6 py-5 wow fadeInUp">
+        <div class="log-modal" id="logModal">
+            <h2 class="text-primary text-center">New Student</h2>
+            <hr>
+            <form action="" method="POST">
+              {{ form.hidden_tag() }}
+              <div class="form-group">
+                {{ form.id.label(class='form-control-label')}}
+                {% if form.id.errors %}
+                  {{ form.id(class='form-control is-invalid', id="stu-name")}}
+                  <div class="invalid-feedback">
+                    {% for error in form.id.errors %}
+                      <span>{{error}}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.id(class='form-control', id="stu-name")}}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.email.label(class='form-control-label')}}
+                {% if form.email.errors %}
+                  {{ form.email(class='form-control is-invalid', id="stu-name")}}
+                  <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                      <span>{{error}}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.email(class='form-control', id="stu-name")}}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.password.label(class='form-control-label')}}
+                {% if form.password.errors %}
+                  {{ form.password(class='form-control is-invalid', id="stu-pwsd")}}
+                  <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                      <span>{{error}}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.password(class='form-control', id="sub-pwsd")}}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.sem.label(class='form-control-label')}}
+                {% if form.sem.errors %}
+                  {{ form.sem(class='form-control is-invalid', id="stu-cpwsd")}}
+                  <div class="invalid-feedback">
+                    {% for error in form.sem.errors %}
+                      <span>{{error}}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.sem(class='form-control', id="sub-cpswd")}}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.submit(class='btn btn-primary btn-lg btn-block mt-2')}}
+              </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6 py-5 wow zoomIn">
+      <div class="img-fluid text-center">
+        <img src="{{url_for('static', filename='img/form.jpg')}}" height="100%" width="100%" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

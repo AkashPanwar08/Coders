@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="page-banner home-banner">
+        <h5>This page is forbidden</h5>
+      <div class="row align-items-center flex-wrap-reverse h-100">
+        <div class="col-md-6 wow zoomIn">
+            You don't have permission to access this page.
+        </div>
+        <div class="col-md-6 wow zoomIn">
+          <div class="img-fluid text-center">
+            <img src="{{url_for('static', filename='img/error404.jpg')}}" alt="" height="100%" width="100%">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

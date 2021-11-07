@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="page-section pt-5">
+    <div class="container">
+      <nav aria-label="Breadcrumb">
+        <ul class="breadcrumb p-0 mb-0 bg-transparent">
+          <li class="breadcrumb-item"><a href="home">Home</a></li>
+          <li class="breadcrumb-item"><a href="news">News</a></li>
+          <li class="breadcrumb-item active">{{title}}</li>
+        </ul>
+      </nav>
+      
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="blog-single-wrap">
+            <div class="header"  style="width: 60%;">
+              <div class="post-thumb">
+                <img src={{url_img}} alt="">
+              </div>
+              <div class="meta-header">
+                <div class="post-author">
+                  <div class="avatar">
+                    <img src="{{url_for('static', filename='img/article_black.svg')}}" alt="">
+                  </div>
+                  by <a href="#">{{author}}</a>
+                </div>
+              </div>
+            </div>
+            <h1 class="post-title">{{title}}</h1>
+            <div class="post-meta">
+              <div class="post-date">
+                <span class="icon">
+                  <span class="mai-time-outline"></span>
+                </span> <a href="#">{{date}}</a>
+              </div>
+            </div>
+            <div class="post-content">{{description}}<br>
+              <div class="btn btn-primary">Read more</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-4">
+          <div class="widget">
+
+            <!-- Widget recent post -->
+            <div class="widget-box" id="widget1">
+              <h4 class="widget-title">Recent Post</h4>
+              <div class="divider"></div>
+
+              <div class="blog-item">
+                  <a class="post-thumb" href="">
+                    <img src="../assets/img/blog/blog-1.jpg" alt="">
+                  </a>
+                  <div class="content">
+                    <h6 class="post-title"><a href="#">Even the all-powerful Pointing has no control</a></h6>
+                    <div class="meta">
+                      <a href="#"><span class="mai-calendar"></span> July 12, 2018</a>
+                      <a href="#"><span class="mai-person"></span> Admin</a>
+                      <a href="#"><span class="mai-chatbubbles"></span> 19</a>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="blog-item">
+                  <a class="post-thumb" href="">
+                    <img src="../assets/img/blog/blog-2.jpg" alt="">
+                  </a>
+                  <div class="content">
+                    <h6 class="post-title"><a href="#">Even the all-powerful Pointing has no control</a></h6>
+                    <div class="meta">
+                      <a href="#"><span class="mai-calendar"></span> July 12, 2018</a>
+                      <a href="#"><span class="mai-person"></span> Admin</a>
+                      <a href="#"><span class="mai-chatbubbles"></span> 19</a>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="blog-item">
+                  <a class="post-thumb" href="">
+                    <img src="../assets/img/blog/blog-3.jpg" alt="">
+                  </a>
+                  <div class="content">
+                    <h6 class="post-title"><a href="#">Even the all-powerful Pointing has no control</a></h6>
+                    <div class="meta">
+                      <a href="#"><span class="mai-calendar"></span> July 12, 2018</a>
+                      <a href="#"><span class="mai-person"></span> Admin</a>
+                      <a href="#"><span class="mai-chatbubbles"></span> 19</a>
+                    </div>
+                  </div>
+              </div>
+
+            </div>
+
+            <!-- Widget Tag Cloud -->
+            <div class="widget-box">
+              <h4 class="widget-title">Tag Cloud</h4>
+              <div class="divider"></div>
+
+              <div class="tag-clouds">
+                <a href="#" class="tag-cloud-link">Projects</a>
+                <a href="#" class="tag-cloud-link">Design</a>
+                <a href="#" class="tag-cloud-link">Travel</a>
+                <a href="#" class="tag-cloud-link">Brand</a>
+                <a href="#" class="tag-cloud-link">Trending</a>
+                <a href="#" class="tag-cloud-link">Knowledge</a>
+                <a href="#" class="tag-cloud-link">Food</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endblock %}

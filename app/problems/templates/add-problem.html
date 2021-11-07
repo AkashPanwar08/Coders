@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="">
+      <div class="row align-items-center flex-wrap-reverse">
+        <div class="col-md-6 py-5 wow zoomIn">
+            <h2 class="text-primary text-center">Add new problem</h2>
+            <hr>
+            <div class="log-modal" id="logModal">
+                <form action="" method="POST">
+                  {{ form.hidden_tag() }}
+                    <div class="form-group">
+                      {{ form.title.label(class='form-control-label')}}
+                      {% if form.title.errors %}
+                        {{ form.title(class='form-control is-invalid', id="user-name")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.title.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.title(class='form-control', id="prb-name")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.content.label(class='form-control-label')}}
+                      {% if form.content.errors %}
+                        {{ form.content(class='form-control is-invalid', id="user-password")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.content.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.content(class='form-control', id="prb-password")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.testCase.label(class='form-control-label')}}
+                      {% if form.testCase.errors %}
+                        {{ form.testCase(class='form-control is-invalid', id="user-testCase")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.content.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.testCase(class='form-control', id="prb-testCase")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.testOutput.label(class='form-control-label')}}
+                      {% if form.testOutput.errors %}
+                        {{ form.testOutput(class='form-control is-invalid', id="user-testCase")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.testOutput.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.testOutput(class='form-control', id="prb-testCase")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.hiddenCase.label(class='form-control-label')}}
+                      {% if form.hiddenCase.errors %}
+                        {{ form.hiddenCase(class='form-control is-invalid', id="user-testCase")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.hiddenCase.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                      {{ form.hiddenCase(class='form-control', id="prb-testCase")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.hiddenOutput.label(class='form-control-label')}}
+                      {% if form.hiddenOutput.errors %}
+                        {{ form.hiddenOutput(class='form-control is-invalid', id="prb-testCase")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.hiddenOutput.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                      {{ form.hiddenOutput(class='form-control', id="prb-testCase")}}
+                      {% endif %}
+                    </div>
+                  <div class="form-group">
+                    {{ form.submit(class='btn btn-primary btn-lg btn-block mt-2')}}
+                  </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 py-5 wow fadeInRight">
+          <div class="img-fluid text-center">
+            <img src="{{url_for('static', filename='img/form.jpg')}}" height="100%" width="100%" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

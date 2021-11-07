@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+      <div class="page-banner home-banner">
+        <div class="row align-items-center flex-wrap-reverse h-100">
+          <div class="col-md-6 py-5 wow fadeInLeft">
+            <h1 class="mb-4">Let's Check and Optimize your code!</h1>
+            <p class="text-lg text-grey mb-5">Ignite the most powerfull code you have ever built for your problems.</p>
+            <a href="{{url_for('subjectss.subjects')}}" class="btn btn-primary btn-split">Start <div class="fab"><span class="mai-play"></span></div></a>
+          </div>
+          <div class="col-md-6 py-5 wow zoomIn">
+            <div class="img-fluid text-center">
+              <img src="{{url_for('static', filename='img/banner_image_1.svg')}}" alt="">
+            </div>
+          </div>
+        </div>
+        <a href="#about" class="btn-scroll" data-role="smoothscroll"><span class="mai-arrow-down"></span></a>
+      </div>
+    </div>
+
+  <div cla  ss="page-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card-service wow fadeInUp">
+            <div class="header">
+              <img src="{{url_for('static', filename='img/services/service-1.svg')}}" alt="">
+            </div>
+            <div class="body">
+              <h5 class="text-secondary">1<sup>st</sup> Position</h5>
+              <p>Achive first posiion in all the practicles.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card-service wow fadeInUp">
+            <div class="header">
+              <img src="{{url_for('static', filename='img/services/service-2.svg')}}" alt="">
+            </div>
+            <div class="body">
+              <h5 class="text-secondary">Certification</h5>
+              <p>Get your certificate for 1<sup>st</sup> position from college.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card-service wow fadeInUp">
+            <div class="header">
+              <img src="{{url_for('static', filename='img/services/service-3.svg')}}" alt="">
+            </div>
+            <div class="body">
+              <h5 class="text-secondary">Find Job Letter</h5>
+              <p>Perform well in interview and find your joining letter in your inbox.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+  <div class="page-section" id="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 py-3 wow fadeInUp">
+          <span class="subhead">About us</span>
+          <h2 class="title-section">The number #1 coding website</h2>
+          <div class="divider"></div>
+
+          <p>Mietian Coders is the most comprehensive developer assessment software that helps college to accurately measure the skills of developers. </p>
+          <p>Mietian Coders provides support for a wide range of languages.</p>
+          <a href="about" class="btn btn-primary mt-3">Read More</a>
+        </div>
+        <div class="col-lg-6 py-3 wow fadeInRight">
+          <div class="img-fluid py-3 text-center">
+            <img src="{{url_for('static', filename='img/about_frame.png')}}" alt="">
+          </div>
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+
+  <!-- Banner info -->
+  <div class="page-section banner-info">
+    <div class="wrap bg-image" style="background-image: url(../static/img/bg_pattern.svg);">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 py-3 pr-lg-5 wow fadeInUp">
+            <h2 class="title-section">Mietian Coders to improve your <br> Performance</h2>
+            <div class="divider"></div>
+            <p>We're an experienced team of professors who breathe for you and for your career.</p>
+            
+            <ul class="theme-list theme-list-light text-white">
+              <li>
+                <div class="h5">Mietian Coders Content Strategy</div>
+                <p>The questions are simple and easy to do so that begginers can also learn tp code.</p>
+              </li>
+              <li>
+                <div class="h5">Mietian Coders</div>
+                <p>Mietian Coders provides a simple and eye catching interface so you can code for a longer time.</p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6 py-3 wow fadeInRight">
+            <div class="img-fluid text-center">
+              <img src="{{url_for('static', filename='img/banner_image_2.svg')}}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div> <!-- .wrap -->
+  </div> <!-- .page-section -->
+
+  <!-- Blog -->
+  <div class="page-section">
+    <div class="container">
+      <div class="text-center wow fadeInUp">
+        <div class="subhead">News</div>
+        <h2 class="title-section">Read Latest News</h2>
+        <div class="divider mx-auto"></div>
+      </div>
+
+      <div class="row mt-5" id="data">
+        <!-- This data is taken from the Google news feed -->
+      </div>
+    </div>
+  </div>
+
+  <script src = "{{url_for('static', filename='js/google-news.js')}}"></script>
+
+{% endblock %}

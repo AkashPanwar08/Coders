@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="copyright" content="MACode ID, https://macodeid.com/">
+
+  <title>Mietian Coders</title>
+
+  <link rel="stylesheet" href="{{url_for('static', filename='css/maicons.css')}}">
+
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}">
+
+  <link rel="stylesheet" href="{{url_for('static', filename='vendor/animate/animate.css')}}">
+
+  <link rel="stylesheet" href="{{url_for('static', filename='css/theme.css')}}">
+  
+  <link rel="stylesheet" href="{{url_for('static', filename='css/editor.css')}}">
+
+  <link rel="shortcut icon" href="#">
+</head>
+<body>
+
+  <!-- Back to top button -->
+  <div class="back-to-top"></div>
+  <div class="top"></div>
+
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky" data-offset="100">
+      <div class="container">
+        <a href="#" class="navbar-brand">Mietian <span class="text-primary">Coders.</span></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" id="navbarContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item {{active1}}">
+              <div class="rounded-pill bg-primary text-white pl-4 pr-4 p-2 wow zoomIn">Beta Version </div>
+            </li>
+            <li class="nav-item {{active1}}">
+              <a class="nav-link" href="home">Home</a>
+            </li>
+            <li class="nav-item {{active2}}">
+              <a class="nav-link" href="about">About</a>
+            </li>
+            <li class="nav-item {{active3}}">
+              <a class="nav-link" href="subjects">Subjects</a>
+            </li>
+            <li class="nav-item {{active4}}">
+              <a class="nav-link" href="news">News</a>
+            </li>
+            <li class="nav-item {{active5}}">
+              <a class="nav-link" href="contact">Contact</a>
+            </li>
+            <li>
+              <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            </li>
+            <li class="nav-item">
+              {% if current_user.is_authenticated %}
+                <a href="{{url_for('logins.logout')}}" class="btn btn-light ml-lg-2" id="logOut">Logout</a>
+              {% else %}
+                <a href="{{url_for('logins.login')}}" class="btn btn-primary ml-lg-2" id="logBtn">Log In</a>
+              {% endif %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories = True) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} text-center">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}
+
+  {% endblock %}
+
+
+  <footer class="page-footer bg-light mt-5">
+    <div class="container">
+      <div class="row mb-5 wow fadeInUp">
+        <div class="col-lg-4 py-3">
+          <h3>Mietian Coders</h3>
+          <p>Mietian Coders is a platform for developing coding skills and focused on improving the neurarl network of your brain for logical programming.</p>
+        </div>
+        <div class="col-lg-4 py-3">
+          <h5>Contact Us</h5>
+          <p>N.H. 58, Delhi-Roorkee Highway, Baghpat Bypass Road Crossing, Meerut, Uttar Pradesh</p>
+          <a href="#" class="footer-link">+91 123 456 7899</a><br>
+          <a href="#" class="footer-link">coders.2021@miet.ac.in</a>
+        </div>
+        <div class="col-lg-4 py-3">
+          <h5>Newsletter</h5>
+          <p>Get updates, news or events on your mail.</p>
+          <form action="#">
+            <input type="text" class="form-control" placeholder="Enter your email..">
+            <button type="submit" class="btn btn-primary btn-block mt-2">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <p class="text-center" id="copyright">Copyright &copy; 2020. This website design and develop by <a href="https://www.miet.ac.in/" target="_blank">MIET</a></p>
+    </div>
+  </footer>
+
+<script src="{{url_for('static', filename='js/jquery-3.5.1.min.js')}}"></script>
+
+<script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+
+<script src="{{url_for('static', filename='vendor/wow/wow.min.js')}}"></script>
+
+<script src="{{url_for('static', filename='js/theme.js')}}"></script>
+
+</body>
+</html>

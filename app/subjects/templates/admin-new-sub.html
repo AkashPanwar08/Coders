@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="page-banner home-banner">
+      <div class="row align-items-center flex-wrap-reverse h-100">
+        <div class="col-md-6 py-5 wow zoomIn">
+            <div class="log-modal" id="logModal">
+                <h2 class="text-primary text-center">Add new subject</h2>
+                <hr>
+                <form action="" method="POST">
+                  {{ form.hidden_tag() }}
+                  <div class="form-group">
+                    {{ form.id.label(class='form-control-label')}}
+                    {% if form.id.errors %}
+                      {{ form.id(class='form-control is-invalid', id="sub-id")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.id.errors %}
+                          <span>{{error}}</span>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ form.id(class='form-control', id="sub-id")}}
+                    {% endif %}
+                  </div>
+                    <div class="form-group">
+                      {{ form.name.label(class='form-control-label')}}
+                      {% if form.name.errors %}
+                        {{ form.name(class='form-control is-invalid', id="sub-name")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.id.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.name(class='form-control', id="sub-name")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.discription.label(class='form-control-label')}}
+                      {% if form.discription.errors %}
+                        {{ form.discription(class='form-control is-invalid', id="sub-description")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.id.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.discription(class='form-control', id="sub-description")}}
+                      {% endif %}
+                    </div>
+                  <div class="form-group">
+                    {{ form.submit(class='btn btn-primary btn-lg btn-block mt-2')}}
+                  </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 py-5 wow fadeInRight">
+          <div class="img-fluid text-center">
+            <img src="{{url_for('static', filename='img/form.jpg')}}" height="100%" width="100%" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

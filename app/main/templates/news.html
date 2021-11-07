@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="page-banner">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-md-6">
+        <nav aria-label="Breadcrumb">
+          <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="home">Home</a></li>
+            <li class="breadcrumb-item active">News</li>
+          </ul>
+        </nav>
+        <h1 class="text-center">News</h1>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="page-section">
+    <div class="container">
+      <div class="row my-5" id="data">
+        <!-- Took data from Google api -->
+      </div>
+      
+    </div>
+  </div>
+
+<!-- Fetching Google News -->
+<script>
+  fetch('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=5a27d18059f749098ccbc7d4d3611f4f')
+  .then((response) => {
+    return response.json();
+  })
+  .then((response) => {
+    var data = response.articles;
+    var str = ""
+    for(let i = 0; i < 9; i++) {
+      str+=
+      `
+      <div class="col-lg-4 py-3">
+        <div class="card-blog">
+          <div class="header">
+            <div class="post-thumb">
+              <img src=` + data[i].urlToImage +` alt="" id="image">
+            </div>
+          </div>
+          <div class="body">
+            <h5 class="post-title"><a href=detail`+i+`>` + data[i].title + `</a></h5>
+            <div class="post-date">Posted on <a href="#">` + data[i].publishedAt.slice(0, 10) + `</a></div>
+          </div>
+        </div>
+      </div>
+      `
+    }
+  document.getElementById("data").innerHTML = str;
+
+  })
+  .catch();
+
+</script>
+{% endblock %}

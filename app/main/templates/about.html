@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+      <div class="page-banner">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-md-6">
+            <nav aria-label="Breadcrumb">
+              <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                <li class="breadcrumb-item active">About</li>
+              </ul>
+            </nav>
+            <h1 class="text-center">About Us</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="page-section" id="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 py-3 wow fadeInUp">
+          <span class="subhead">About us</span>
+          <h2 class="title-section">The number #1 coding website</h2>
+          <div class="divider"></div>
+
+          <p>Mietian Coders is the most comprehensive developer assessment software that helps college to accurately measure the skills of developers. </p>
+          <p>Mietian Coders provides support for a wide range of languages.</p>
+          <p>Mietian Coders is a product of MIET powered by Microsoft and Judge0. It is highly reliable and safe to use. Mietian Coders team understand and take care of speed and efficiency of website so that errors ans lag could be minimized.</p>
+        </div>
+        <div class="col-lg-6 py-3 wow fadeInRight">
+          <div class="img-fluid py-3 text-center">
+            <img src="{{url_for('static', filename='img/about_frame.png')}}" alt="">
+          </div>
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+  <div class="page-section" id="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-4 py-3 wow fadeInLeft">
+          <h2 class="title-section">Data Driven</h2>
+          <div class="divider"></div>
+          <ul>
+            <li>We are not afraid to challenge the status-quo</li>
+            <li>We debate respectfully and insightfully as often as we can</li>
+            <li>We never stop learning</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 py-3 wow fadeInDown">
+          <h2 class="title-section">Extreme Ownership</h2>
+          <div class="divider"></div>
+          <ul>
+            <li>We operate in a ‘no excuse’ zone for our students</li>
+            <li>We are relentlessly resourceful and <br>helpfull</li>
+            <li>We optimize for speed</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 py-3 wow fadeInRight">
+          <h2 class="title-section">Giver</h2>
+          <div class="divider"></div>
+          <ul>
+            <li>We are direct, but not mean</li>
+            <li>We make time to help others achieve their goals</li>
+            <li>We seek to understand</li>
+            <li>We respect students</li>
+          </ul>
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section --> 
+
+  {% endblock %}

@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+  <div class="page-banner">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-md-6">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {% if form.id.errors %}
+                  {{ form.id(class='col-md-9 form-control float-left mt-3 is-invalid', id="prb-name", placeholder="Search student by ID")}}
+                {% else %}
+                  {{ form.id(class='col-md-9 form-control float-left mt-3', id="prb-name", placeholder="Search student by ID")}}
+                {% endif %}
+                {{ form.submit(class='col-md-3 form-control mt-3 btn btn-primary')}}
+                {% if form.id.errors %}
+                  <div class="invalid-feedback">
+                    {% for error in form.id.errors %}
+                      <span class="">{{error}}</span>
+                    {% endfor %}
+                  </div> 
+                {% endif %}
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% if details %}
+<div class="page-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 rounded">
+        <div class="flex">
+          <div class="header">
+            <h5 class="text-secondary">{{id}}</h5>
+          </div>
+          <hr>
+          <div class="body">
+            {% for subject, problems in details.items() %}
+            <details><summary>{{ subject }}</summary>
+              <table id="questions">
+                <tr>
+                  <th>S. No.</th>
+                  <th>Title</th>
+                  <th>Status</th>
+                </tr>
+                {% for problem, status in problems %}
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td class="table-row">{{ problem }}</td> 
+                  <td>
+                    {% if status == 1 %}
+                      <svg xmlns="http://www.w3.org/2000/TR/SVG" viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor" 
+                      class="w-[30px] h-[30px] text-success"><path fill-rule="evenodd" 
+                      d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z" 
+                      clip-rule="evenodd"></path></svg>
+                    {% elif status == 0 %}
+                      <svg xmlns="http://www.w3.org/2000/TR/SVG" viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor" 
+                      class="w-[30px] h-[30px] mr-1 text-warning"><path fill-rule="evenodd" 
+                      d="M8.972 3a1 1 0 01.964.649l4.978 13.274 1.632-5.221A1 1 0 0117.5 11H21a1 1 0 110 2h-2.765l-2.28 7.298a1 1 0 01-1.891.053L9.086
+                       7.077l-1.632 5.221A1 1 0 016.5 13H3a1 1 0 110-2h2.765l2.28-7.298A1 1 0 018.973 3z" 
+                      clip-rule="evenodd"></path></svg>
+                    {% else %}
+                      <svg xmlns="http://www.w3.org/2000/TR/SVG" viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor" 
+                      class="w-[30px] h-[30px] text-primary"><path fill-rule="evenodd" 
+                      d="M19 11.063V7h-2v1a1 1 0 11-2 0V7H9v1a1 1 0 01-2 0V7H5v4.063h14zm0 2H5V19h14v-5.938zM9 5h6V4a1 1 0 112 0v1h2a2 2 0 012 2v12a2 
+                      2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2V4a1 1 0 012 0v1z" 
+                      clip-rule="evenodd"></path></svg>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </details>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if all_student_details %}
+<div class="page-section">
+  <div class="container">
+    {% for roll, details in all_student_details.items() %}
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6 rounded">
+        <div class="flex">
+          <div class="header">
+            <h5 class="text-secondary">{{roll}}</h5><a href="{{url_for('students.editStudentDetails', student_id=roll)}}">Edit</a>
+          </div>
+          <hr>
+          <div class="body">
+            {% for subject, problems in details.items() %}
+            <details><summary>{{ subject }}</summary>
+              <table id="questions">
+                <tr>
+                  <th>S. No.</th>
+                  <th>Title</th>
+                  <th>Status</th>
+                </tr>
+                {% for problem, status in problems %}
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td class="table-row">{{ problem }}</td> 
+                  <td>
+                    {% if status == 1 %}
+                      <svg xmlns="http://www.w3.org/2000/TR/SVG" viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor" 
+                      class="w-[30px] h-[30px] text-success"><path fill-rule="evenodd" 
+                      d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z" 
+                      clip-rule="evenodd"></path></svg>
+                    {% elif status == 0 %}
+                      <svg xmlns="http://www.w3.org/2000/TR/SVG" viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor" 
+                      class="w-[30px] h-[30px] mr-1 text-warning"><path fill-rule="evenodd" 
+                      d="M8.972 3a1 1 0 01.964.649l4.978 13.274 1.632-5.221A1 1 0 0117.5 11H21a1 1 0 110 2h-2.765l-2.28 7.298a1 1 0 01-1.891.053L9.086
+                       7.077l-1.632 5.221A1 1 0 016.5 13H3a1 1 0 110-2h2.765l2.28-7.298A1 1 0 018.973 3z" 
+                      clip-rule="evenodd"></path></svg>
+                    {% else %}
+                      <svg xmlns="http://www.w3.org/2000/TR/SVG" viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor" 
+                      class="w-[30px] h-[30px] text-primary"><path fill-rule="evenodd" 
+                      d="M19 11.063V7h-2v1a1 1 0 11-2 0V7H9v1a1 1 0 01-2 0V7H5v4.063h14zm0 2H5V19h14v-5.938zM9 5h6V4a1 1 0 112 0v1h2a2 2 0 012 2v12a2 
+                      2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2V4a1 1 0 012 0v1z" 
+                      clip-rule="evenodd"></path></svg>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </details>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endblock %}

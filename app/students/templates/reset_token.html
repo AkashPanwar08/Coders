@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<div class="container">
+    <div class="page-banner home-banner">
+      <div class="row align-items-center flex-wrap-reverse h-100">
+        <div class="col-md-6 py-5 wow zoomIn">
+            <div class="log-modal" id="logModal">
+                <h2 class="text-primary text-center">Reset Password</h2>
+                <hr>
+                <form action="" method="POST">
+                  {{ form.hidden_tag() }}
+                    <div class="form-group">
+                      {{ form.password.label(class='form-control-label')}}
+                      {% if form.password.errors %}
+                        {{ form.password(class='form-control is-invalid', id="user-pswd")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.password.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.password(class='form-control', id="user-pswd")}}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.confirmPassword.label(class='form-control-label')}}
+                      {% if form.confirmPassword.errors %}
+                        {{ form.confirmPassword(class='form-control is-invalid', id="user-cpswd")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.confirmPassword.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.confirmPassword(class='form-control', id="user-cpswd")}}
+                        {% endif %}
+                    </div>
+                  <div class="form-group">
+                    {{ form.submit(class='btn btn-primary btn-lg btn-block mt-2')}}
+                  </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 py-5 wow fadeInRight">
+          <div class="img-fluid text-center">
+            <img src="{{url_for('static', filename='img/login.jpg')}}" height="100%" width="100%" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %} 
