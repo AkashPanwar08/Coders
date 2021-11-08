@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app.models import Student, Admin
 
 contests = Blueprint('contests', __name__, template_folder='templates')
@@ -13,9 +13,13 @@ def contests():
     return render_template('contest.html')
 
 @contests.routes('/student-contests')
+@login_required
 def student_contest():
-    return render_template('student-contest.html')
+    if current_user.is_authenticated() and isinstance(current_user, Student):
+        return render_template('student-contest.html')
 
 @contests.routes('/admin-contests')
+@login_required
 def student_contest():
-    return render_template('admin-contest.html')
+    if current_user.is_authenticated and isinstance(current_user, Admin):
+        return render_template('admin-contest.html')

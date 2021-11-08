@@ -85,7 +85,7 @@ def studentDetails():
 def resetRequest():
     form = RequestResetForm()
     if form.validate_on_submit():
-        student = Student.query.filter_by(id=int(form.username.data)).first()
+        student = Student.query.filter_by(id=form.username.data).first()
         if student:
             send_reset_email(student)
             flash('An email has been sent with instructions to reset password.', 'info')

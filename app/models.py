@@ -98,7 +98,7 @@ class Questions(db.Model):
     title = db.Column(db.String(20), nullable=False)
     body = db.Column(db.Text, nullable=False)
 
-    contest_id = db.Column(db.String(8), db.ForeignKey('contests.id'), nullable=False)
+    contest_id = db.Column(db.String(20), db.ForeignKey('contests.id'), nullable=False)
 
     solutions = db.relationship('ContestSolutions', cascade="all,delete", backref='solutions', lazy=True)
 
@@ -109,7 +109,7 @@ class ContestSolutions(db.Model):
     content = db.Column(db.Text, nullable=False)
     
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'), nullable=False)
-    student_id = db.Column(db.String(8), db.ForeignKey('register.rollNo'), nullable=False)
+    student_id = db.Column(db.String(20), db.ForeignKey('register.rollNo'), nullable=False)
 
 class Register(db.Model):
     id = db.Column(db.String(20), primary_key=True)
