@@ -1,12 +1,11 @@
 from flask import Blueprint, render_template, url_for, flash, redirect
-from flask_login import current_user
+from flask_login import current_user, login_manager
 import requests
 from app.codes import languages
 from app.models import Admin, Problems
 
 main = Blueprint('main', __name__, template_folder='templates')
 
-import time
 
 @main.route('/')
 @main.route('/home')
