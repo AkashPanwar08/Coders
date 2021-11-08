@@ -29,6 +29,7 @@ def create_app(config_class=Config):
     from app.solutions.routes import solutionss
     from app.students.routes import students
     from app.subjects.routes import subjectss
+    from app.contest.routes import contestss
 
     app.register_blueprint(errors)
     app.register_blueprint(logins)
@@ -37,5 +38,6 @@ def create_app(config_class=Config):
     app.register_blueprint(solutionss)
     app.register_blueprint(students)
     app.register_blueprint(subjectss)
+    app.register_blueprint(contestss)
 
     return app

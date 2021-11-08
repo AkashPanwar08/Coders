@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="page-banner home-banner">
+    <div class="row align-items-center flex-wrap-reverse h-100">
+        <div class="col-md-6">
+            <div class="log-modal" id="logModal">
+                <h2 class="text-primary text-center">New Contest</h2>
+                <hr>
+                <form action="" method="POST">
+                  {{ form.hidden_tag() }}
+                  <div class="form-group">
+                    {{ form.name.label(class='form-control-label')}}
+                    {% if form.name.errors %}
+                      {{ form.name(class='form-control is-invalid', id="stu-name")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.name.errors %}
+                          <span>{{error}}</span>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ form.name(class='form-control', id="stu-name")}}
+                    {% endif %}
+                  </div>
+                  <div class="form-group">
+                    {{ form.startTime.label(class='form-control-label')}}
+                    {% if form.startTime.errors %}
+                      {{ form.startTime(class='form-control is-invalid', id="stu-name")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.startTime.errors %}
+                          <span>{{error}}</span>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ form.startTime(class='form-control', id="stu-name")}}
+                    {% endif %}
+                  </div>
+                  <div class="form-group">
+                    {{ form.endTime.label(class='form-control-label')}}
+                    {% if form.endTime.errors %}
+                      {{ form.endTime(class='form-control is-invalid', id="stu-name")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.endTime.errors %}
+                          <span>{{error}}</span>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ form.endTime(class='form-control', id="stu-name")}}
+                    {% endif %}
+                  </div>
+                  <div class="form-group">
+                    {{ form.submit(class='btn btn-primary btn-lg btn-block mt-2')}}
+                  </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img class="img-responsive", src="{{url_for('static', filename='/img/contest.jpg')}}" height="100%" width="90%" alt="">
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

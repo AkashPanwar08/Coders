@@ -22,7 +22,7 @@ html,body{
     position: absolute;
     Z-index: 1000;
 }
-@media (min-width: 576px) {
+@media (max-width: 576px) {
 .top { 
     display: none !important;
  }

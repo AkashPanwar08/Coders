@@ -86,7 +86,7 @@ class Admin(db.Model, UserMixin):
         return f"Admin('{self.id}', '{self.password}')"
 
 class Contests(db.Model):
-    id = db.Column(db.String(20), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     startTime = db.Column(db.DateTime(), nullable=False)
     endTime = db.Column(db.DateTime(), nullable=False)
@@ -94,16 +94,16 @@ class Contests(db.Model):
     questions = db.relationship('Questions', cascade="all,delete", backref='questions', lazy=True)
 
 class Questions(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(20), nullable=False)
     body = db.Column(db.Text, nullable=False)
 
-    contest_id = db.Column(db.String(20), db.ForeignKey('contests.id'), nullable=False)
+    contest_id = db.Column(db.Integer(), db.ForeignKey('contests.id'), nullable=False)
 
     solutions = db.relationship('ContestSolutions', cascade="all,delete", backref='solutions', lazy=True)
 
 class ContestSolutions(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     judgeLanguageId = db.Column(db.Integer, nullable=False)
     monacoLanguageId = db.Column(db.String(20), nullable=False)
     content = db.Column(db.Text, nullable=False)
@@ -115,7 +115,7 @@ class Register(db.Model):
     id = db.Column(db.String(20), primary_key=True)
     contestId = db.Column(db.String(20), nullable=False)
     rollNo = db.Column(db.String(20), nullable=False, unique=True)
-    questionId = db.Column(db.Integer())
+    questionId = db.Column(db.Integer)
     submissionTime = db.Column(db.DateTime())
     
     contest_solutions = db.relationship('ContestSolutions', cascade="all,delete", backref='author', lazy=True)
