@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import current_user, login_required
-from app.models import Contests, Admin, Student
+from app.models import Contests, Admin, Student, Questions
 from app import db
-from app.contest.forms import Contest
+from app.contest.forms import Contest, Question
 from datetime import datetime
 
 contestss = Blueprint('contestss', __name__, template_folder='templates')
@@ -46,7 +46,24 @@ def add_contest():
                 try:
                     db.session.commit()
                     flash('Contest created successfully.', 'success')
+                    return redirect(url_for('contestss.admin_contest'))
                 except Exception as e:
                     flash(str(e), 'danger')
         return render_template('add-contests.html', form=form)
 
+@contestss.route('/add-contest-problems-<id>', methods=['GET', 'POST'])
+@login_required
+def add_contest_problems(id):
+    if current_user.is_authenticated and isinstance(current_user, Admin):
+        form = Question()
+        if form.validate_on_submit():
+            question = Questions(title=form.title.data, body=form.body.data, contest_id=id,testCase=form.testCase.data, testOutput=form.testOutput.data, 
+        hiddenCase=form.testCase.data, hiddenOutput=form.hiddenOutput.data)
+            db.session.add(question)
+            try:
+                db.session.commit()
+                return redirect(url_for('contestss.admin_contest'))
+            except Exception as e:
+                flash(str(e), 'danger')
+                return redirect(url_for('contestss.add_contest_problems', id=id))
+        return render_template('add-contest-problems.html',form=form)

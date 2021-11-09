@@ -1,25 +1,43 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="container">
+    <div class="page-banner">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-6">
+          <nav aria-label="Breadcrumb">
+            <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+              <li class="breadcrumb-item"><a href="home">Home</a></li>
+              <li class="breadcrumb-item active">Contests</li>
+            </ul>
+          </nav>
+          <h1 class="text-center">Contests</h1>
+        </div>
+      </div>
+    </div>
+  </div>
 
+    
   <div class="container shadow p-3 mb-5 bg-white rounded">
-    <h5 class="text-center">Current Contests</h5><br>
+    <h4 class="text-center text-secondary">Current Contests</h4><br>
     <div class="row justify-content-center">
       {% for contest in Contests %}
-      {% if contest.startTime > datetime and contest.endTime < datetime%}
-      <div class="col-lg-4">
-        <div class="card-service">
+      {% if contest.endTime < datetime and contest.startTime > datetime%}
+      <div class="col-lg-8 m-2">
+        <div class="card justify-content-center bg_pattern">
           <div class="header">
-            <h5 class="text-secondary">{{contest.name}}</h5>
+            <h5 class="text-secondary nav-link text-center">{{contest.name}}</h5>
+            
           </div>
-          <hr>
-          <div class="body">
-            <b>Start Time:</b> {{contest.startTime}}<br>
-            <b>End Time:</b> {{contest.endTime}}<br>
-            <b>Duration:</b> {{contest.endTime - contest.startTime}}
-          </div>
-          <hr>
-          <div class="footer">
-            <a href="#" class="btn btn-primary btn-sm">Register</a>
+          <div class="row ml-4 pb-4">
+            <div class="col-lg-2 text-secondary"><b>Date:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-6">
+              <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
+              <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
+              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
+            </div>
+            <div class="col-lg-4">
+              <a href="#" class="btn btn-outline-primary btn-sm">Check Ranks</a>
+            </div>
           </div>
         </div>
       </div>
@@ -28,26 +46,28 @@
     </div>
   </div> <!-- .container -->
 
-  
+
   <div class="container shadow p-3 mb-5 bg-white rounded">
-    <h5 class="text-center">Upcoming Contests</h5><br>
+    <h4 class="text-center text-secondary">Upcoming Contests</h4><br>
     <div class="row justify-content-center">
       {% for contest in Contests %}
-      {% if contest.startTime > datetime%}
-      <div class="col-lg-4">
-        <div class="card-service">
+      {% if contest.endTime > datetime%}
+      <div class="col-lg-8 m-2">
+        <div class="card justify-content-center bg_pattern">
           <div class="header">
-            <h5 class="text-secondary">{{contest.name}}</h5>
+            <h5 class="text-secondary nav-link text-center">{{contest.name}}</h5>
+            
           </div>
-          <hr>
-          <div class="body">
-            <b>Start Time:</b> {{contest.startTime}}<br>
-            <b>End Time:</b> {{contest.endTime}}<br>
-            <b>Duration:</b> {{contest.endTime - contest.startTime}}
-          </div>
-          <hr>
-          <div class="footer">
-            <a href="#" class="btn btn-primary btn-sm">Register</a>
+          <div class="row ml-4 pb-4">
+            <div class="col-lg-2 text-secondary"><b>Day:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-6">
+              <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
+              <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
+              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
+            </div>
+            <div class="col-lg-4">
+              <a href="#" class="btn btn-outline-primary btn-sm">Check Ranks</a>
+            </div>
           </div>
         </div>
       </div>
@@ -56,25 +76,29 @@
     </div>
   </div> <!-- .container -->
 
+
+  <!--Previous Contests-->
   <div class="container shadow p-3 mb-5 bg-white rounded">
-    <h5 class="text-center">Past Contests</h5><br>
+    <h4 class="text-center text-secondary">Past Contests</h4><br>
     <div class="row justify-content-center">
       {% for contest in Contests %}
       {% if contest.endTime < datetime%}
-      <div class="col-lg-4">
-        <div class="card-service">
+      <div class="col-lg-8 m-2">
+        <div class="card justify-content-center bg_pattern">
           <div class="header">
-            <h5 class="text-secondary">{{contest.name}}</h5>
+            <h5 class="text-secondary nav-link text-center">{{contest.name}}</h5>
+            
           </div>
-          <hr>
-          <div class="body">
-            <b>Start Time:</b> {{contest.startTime}}<br>
-            <b>End Time:</b> {{contest.endTime}}<br>
-            <b>Duration:</b> {{contest.endTime - contest.startTime}}
-          </div>
-          <hr>
-          <div class="footer">
-            <a href="#" class="btn btn-primary btn-sm">Check Ranks</a>
+          <div class="row ml-4 pb-4">
+            <div class="col-lg-2 text-secondary"><b>Date:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-6">
+              <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
+              <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
+              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
+            </div>
+            <div class="col-lg-4">
+              <a href="#" class="btn btn-primary btn-sm">Check Ranks</a>
+            </div>
           </div>
         </div>
       </div>

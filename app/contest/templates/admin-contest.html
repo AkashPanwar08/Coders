@@ -1,17 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div class="page-section">
+
+
+  <div class="page-section m-3">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-4">
-          <div class="card-service">
-            <div class="header">
-              <h5 class="text-secondary">Contest</h5>
-            </div>
-            <div class="divider mx-auto"></div>
-            <div class="body">
-              <p>Create new contests for students to make themselves competitive.</p><hr>
-              <a href="add-contests" class="btn btn-primary">Add Contest</a>
+        <div class="col-lg-8">
+          <div class="card bg-light">
+            <div class="row">
+              <div class="col-lg-4 align-middle text-center">
+                <span class="text-secondary align-middle">Create New Contest</span>
+              </div>
+              <div class="col-lg-7 m-2">
+                <p>Create new contests for students to make themselves competitive.</p><hr>
+                <a href="add-contests" class="btn btn-primary">Add Contest</a>
+              </div>
             </div>
           </div>
         </div>
@@ -21,26 +24,28 @@
 
 
   <div class="container shadow p-3 mb-5 bg-white rounded">
-    <h5 class="text-center">Current Contests</h5><br>
+    <h4 class="text-center text-secondary">Current Contests</h4><br>
+    {% for contest in Contests %}
+    {% if contest.endTime > datetime and contest.startTime < datetime%}
     <div class="row justify-content-center">
-      {% for contest in Contests %}
-      {% if contest.startTime > datetime and contest.endTime < datetime%}
-      <div class="col-lg-4">
-        <div class="card-service">
+      <div class="col-lg-8 m-2">
+        <div class="card justify-content-center bg_pattern">
           <div class="header">
-            <h5 class="text-secondary">{{contest.name}}</h5>
+            <h5 class="text-secondary nav-link text-center">{{contest.name}}</h5>
+            
           </div>
-          <hr>
-          <div class="body">
-            <b>Start Time:</b> {{contest.startTime}}<br>
-            <b>End Time:</b> {{contest.endTime}}<br>
-            <b>Duration:</b> {{contest.endTime - contest.startTime}}
-          </div>
-          <hr>
-          <div class="footer">
+          <div class="row ml-4 pb-4">
+            <div class="col-lg-2 text-secondary"><b>Date:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-6">
+              <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
+              <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
+              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
+            </div>
+            <div class="col-lg-4">
             <a href="#" class="btn btn-primary btn-sm">Edit</a>
             <a href="#" class="btn btn-danger btn-sm">Delete</a>
-            <a href="#" class="btn btn-info btn-sm mt-2">Add Problems</a>
+            <a href="{{url_for('contestss.add_contest_problems', id=contest.id) }}" class="btn btn-info btn-sm mt-2">Add Problems</a>
+            </div>
           </div>
         </div>
       </div>
@@ -50,27 +55,30 @@
   </div> <!-- .container -->
 
   
+  
   <div class="container shadow p-3 mb-5 bg-white rounded">
-    <h5 class="text-center">Upcoming Contests</h5><br>
+    <h4 class="text-center text-secondary">Upcoming Contests</h4><br>
     <div class="row justify-content-center">
       {% for contest in Contests %}
       {% if contest.startTime > datetime%}
-      <div class="col-lg-4">
-        <div class="card-service">
+      <div class="col-lg-8 m-2">
+        <div class="card justify-content-center bg_pattern">
           <div class="header">
-            <h5 class="text-secondary">{{contest.name}}</h5>
+            <h5 class="text-secondary nav-link text-center">{{contest.name}}</h5>
+            
           </div>
-          <hr>
-          <div class="body">
-            <b>Start Time:</b> {{contest.startTime}}<br>
-            <b>End Time:</b> {{contest.endTime}}<br>
-            <b>Duration:</b> {{contest.endTime - contest.startTime}}
-          </div>
-          <hr>
-          <div class="footer">
+          <div class="row ml-4 pb-4">
+            <div class="col-lg-2 text-secondary"><b>Date:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-6">
+              <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
+              <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
+              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
+            </div>
+            <div class="col-lg-4">
             <a href="#" class="btn btn-primary btn-sm">Edit</a>
             <a href="#" class="btn btn-danger btn-sm">Delete</a>
             <a href="#" class="btn btn-info btn-sm mt-2">Add Problems</a>
+            </div>
           </div>
         </div>
       </div>
@@ -79,27 +87,28 @@
     </div>
   </div> <!-- .container -->
 
+
   <div class="container shadow p-3 mb-5 bg-white rounded">
-    <h5 class="text-center">Past Contests</h5><br>
+    <h4 class="text-center text-secondary">Past Contests</h4><br>
     <div class="row justify-content-center">
       {% for contest in Contests %}
-      {% if contest.endTime < datetime%}
-      <div class="col-lg-4">
-        <div class="card-service">
+      {% if contest.endTime < datetime %}
+      <div class="col-lg-8 m-2">
+        <div class="card justify-content-center bg_pattern">
           <div class="header">
-            <h5 class="text-secondary">{{contest.name}}</h5>
+            <h5 class="text-secondary nav-link text-center">{{contest.name}}</h5>
+            
           </div>
-          <hr>
-          <div class="body">
-            <b>Start Time:</b> {{contest.startTime}}<br>
-            <b>End Time:</b> {{contest.endTime}}<br>
-            <b>Duration:</b> {{contest.endTime - contest.startTime}}
-          </div>
-          <hr>
-          <div class="footer">
-            <a href="#" class="btn btn-primary btn-sm">Edit</a>
-            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-            <a href="#" class="btn btn-info btn-sm mt-2">Add Problems</a>
+          <div class="row ml-4 pb-4">
+            <div class="col-lg-2 text-secondary"><b>Date:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-6">
+              <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
+              <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
+              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
+            </div>
+            <div class="col-lg-4">
+            <a href="#" class="btn btn-primary btn-sm">Check ranks</a>
+            </div>
           </div>
         </div>
       </div>

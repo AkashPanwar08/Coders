@@ -82,3 +82,6 @@ html,body{
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+.bg_pattern:hover{
+    background-color: #f1f4f8;
+}

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length
-from wtforms import StringField, SubmitField, IntegerField
+from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.fields.html5 import DateTimeLocalField
 
 
@@ -13,4 +13,8 @@ class Contest(FlaskForm):
 class Question(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     body = StringField('Body', validators=[DataRequired()])
+    testCase = TextAreaField('Sample Test Case Input')
+    testOutput = TextAreaField('Sample Test Case Output', validators=[DataRequired()])
+    hiddenCase = TextAreaField('Hidden Test Case Input')
+    hiddenOutput = TextAreaField('Hidden Test Case Output')
     submit = SubmitField('Submit')

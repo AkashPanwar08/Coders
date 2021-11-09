@@ -90,13 +90,16 @@ class Contests(db.Model):
     name = db.Column(db.String(20), nullable=False)
     startTime = db.Column(db.DateTime(), nullable=False)
     endTime = db.Column(db.DateTime(), nullable=False)
-
     questions = db.relationship('Questions', cascade="all,delete", backref='questions', lazy=True)
 
 class Questions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(20), nullable=False)
     body = db.Column(db.Text, nullable=False)
+    testCase = db.Column(db.Text)
+    testOutput = db.Column(db.Text, nullable=False)
+    hiddenCase = db.Column(db.Text)
+    hiddenOutput = db.Column(db.Text, nullable=False)
 
     contest_id = db.Column(db.Integer(), db.ForeignKey('contests.id'), nullable=False)
 
@@ -107,6 +110,7 @@ class ContestSolutions(db.Model):
     judgeLanguageId = db.Column(db.Integer, nullable=False)
     monacoLanguageId = db.Column(db.String(20), nullable=False)
     content = db.Column(db.Text, nullable=False)
+    submitTime = db.Column(db.DateTime(), nullable=False)
     
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'), nullable=False)
     student_id = db.Column(db.String(20), db.ForeignKey('register.rollNo'), nullable=False)

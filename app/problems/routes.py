@@ -26,7 +26,7 @@ def addProblem(id):
     form = ProblemForm()
     if form.validate_on_submit():
         problem = Problems(title=form.title.data, content=form.content.data, testCase=form.testCase.data, testOutput=form.testOutput.data, 
-        hiddenCase=form.testCase.data, hiddenOutput=form.hiddenOutput.data + "\n" + form.testOutput.data, subject_id=id)
+        hiddenCase=form.testCase.data, hiddenOutput=form.hiddenOutput.data, subject_id=id)
         try:
             db.session.add(problem)
             db.session.commit()
