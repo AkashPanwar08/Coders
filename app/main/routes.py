@@ -54,6 +54,5 @@ def editor(prblm_id):
     if not current_user.is_authenticated:
         flash('Please login first', 'danger')
         return redirect(url_for('main.index'))
-    problems=Problems
-    problem=problems.query.filter_by(id=prblm_id).first()
+    problem=Problems.query.filter_by(id=prblm_id).first()
     return render_template('editor.html', languages=languages, problem=problem, id=current_user.id)

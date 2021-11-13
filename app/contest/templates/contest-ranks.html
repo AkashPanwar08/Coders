@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <table id="questions">
+            <tr>
+                <th>Ranks</th>
+                <th>Roll no.</th>
+                <th>Submission Time</th>
+            </tr>
+            {%for rank in ranks %}
+                <tr class="">
+                    <td>
+                        {{loop.index}}
+                    </td>
+                    <td>
+                        {{rank.rollNo}}<br>
+                    </td>
+                    <td>
+                        {{rank.submitTime}}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

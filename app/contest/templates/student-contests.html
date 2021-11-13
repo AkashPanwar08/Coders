@@ -21,7 +21,7 @@
     <h4 class="text-center text-secondary">Current Contests</h4><br>
     <div class="row justify-content-center">
       {% for contest in Contests %}
-      {% if contest.endTime < datetime and contest.startTime > datetime%}
+      {% if contest.endTime > datetime and contest.startTime < datetime%}
       <div class="col-lg-8 m-2">
         <div class="card justify-content-center bg_pattern">
           <div class="header">
@@ -36,11 +36,15 @@
               <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
             </div>
             <div class="col-lg-4">
-              <a href="#" class="btn btn-outline-primary btn-sm">Check Ranks</a>
+              {% if register.query.filter_by(rollNo=id, contestId=contest.id).all() %}
+              <a href="{{url_for('contestss.startContest', contest_id=contest.id)}}" class="btn btn-outline-success btn-sm">Open</a>
+              {% else %}
+                <a href="{{url_for('contestss.register', contest_id=contest.id)}}" class="btn btn-outline-primary btn-sm">Register</a>
+              {% endif %}
             </div>
           </div>
         </div>
-      </div>
+        </div>
       {% endif %}
       {% endfor %}
     </div>
@@ -51,7 +55,7 @@
     <h4 class="text-center text-secondary">Upcoming Contests</h4><br>
     <div class="row justify-content-center">
       {% for contest in Contests %}
-      {% if contest.endTime > datetime%}
+      {% if contest.startTime > datetime%}
       <div class="col-lg-8 m-2">
         <div class="card justify-content-center bg_pattern">
           <div class="header">
@@ -59,18 +63,24 @@
             
           </div>
           <div class="row ml-4 pb-4">
-            <div class="col-lg-2 text-secondary"><b>Day:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-2 text-secondary"><b>Date:</b><br>{{contest.startTime}}</div>
             <div class="col-lg-6">
               <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
               <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
               <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
             </div>
             <div class="col-lg-4">
-              <a href="#" class="btn btn-outline-primary btn-sm">Check Ranks</a>
+              {% if register.query.filter_by(rollNo=id, contestId=contest.id).all() %}
+              <div class="wrapper"> <svg class="animated-check" viewBox="0 0 24 24">
+                <path d="M4.1 12.7L9 17.6 20.3 6.3" fill="none" /> </svg>
+              </div>
+              {% else %}
+              <a href="{{url_for('contestss.register', contest_id=contest.id)}}" class="btn btn-outline-primary btn-sm">Register</a>
+              {% endif %}
             </div>
           </div>
         </div>
-      </div>
+        </div>
       {% endif %}
       {% endfor %}
     </div>
@@ -97,7 +107,7 @@
               <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
             </div>
             <div class="col-lg-4">
-              <a href="#" class="btn btn-primary btn-sm">Check Ranks</a>
+              <a href="contest-ranks" class="btn btn-primary btn-sm">Check Ranks</a>
             </div>
           </div>
         </div>
@@ -106,5 +116,5 @@
       {% endfor %}
     </div>
   </div> <!-- .container -->
-
+<link rel="stylesheet" href="{{url_for('static', filename='css/register.css')}}">
 {% endblock %}

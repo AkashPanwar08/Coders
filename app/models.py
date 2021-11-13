@@ -101,7 +101,7 @@ class Questions(db.Model):
     hiddenCase = db.Column(db.Text)
     hiddenOutput = db.Column(db.Text, nullable=False)
 
-    contest_id = db.Column(db.Integer(), db.ForeignKey('contests.id'), nullable=False)
+    contest_id = db.Column(db.Integer, db.ForeignKey('contests.id'), nullable=False)
 
     solutions = db.relationship('ContestSolutions', cascade="all,delete", backref='solutions', lazy=True)
 
@@ -111,16 +111,20 @@ class ContestSolutions(db.Model):
     monacoLanguageId = db.Column(db.String(20), nullable=False)
     content = db.Column(db.Text, nullable=False)
     submitTime = db.Column(db.DateTime(), nullable=False)
+    submitted = db.Column(db.Boolean, default=False)
     
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'), nullable=False)
     student_id = db.Column(db.String(20), db.ForeignKey('register.rollNo'), nullable=False)
+    __table_args__ = (
+        db.UniqueConstraint('question_id','student_id'),
+        )
 
 class Register(db.Model):
-    id = db.Column(db.String(20), primary_key=True)
-    contestId = db.Column(db.String(20), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    contestId = db.Column(db.Integer, nullable=False)
     rollNo = db.Column(db.String(20), nullable=False, unique=True)
-    questionId = db.Column(db.Integer)
-    submissionTime = db.Column(db.DateTime())
+    submitTime = db.Column(db.DateTime())
+    count = db.Column(db.Integer, nullable=False, default=0)
     
     contest_solutions = db.relationship('ContestSolutions', cascade="all,delete", backref='author', lazy=True)
 

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+      <div class="page-banner">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-md-6">
+            <nav aria-label="Breadcrumb">
+              <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                <li class="breadcrumb-item active">Problems</li>
+              </ul>
+            </nav>
+            <h1 class="text-center">Problems</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+  <div class="page-section" id="about">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-8 py-8">
+    <table id="questions">
+      <tr>
+        <th>S. No.</th>
+        <th class="table-row">Title</th>
+        <th>Status</th>
+      </tr>
+      {% for problem in questions %}
+      {% if problem %}
+      <tr>
+        <td>{{loop.index}}</td>
+        <td class="table-row"><a href="contest-editor-{{problem.id}}">{{ problem.title }}</a></td>
+        <td>
+          {% if solution.query.filter_by(student_id=current_user.id, question_id=problem.id).first().submitted == true %}
+            <svg xmlns="http://www.w3.org/2000/TR/SVG" viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor" 
+            class="w-[30px] h-[30px] text-success"><path fill-rule="evenodd" 
+            d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z" 
+            clip-rule="evenodd"></path></svg>
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/TR/SVG" viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor" 
+            class="w-[30px] h-[30px] mr-1 text-warning"><path fill-rule="evenodd" 
+            d="M8.972 3a1 1 0 01.964.649l4.978 13.274 1.632-5.221A1 1 0 0117.5 11H21a1 1 0 110 2h-2.765l-2.28 7.298a1 1 0 01-1.891.053L9.086 7.077l-1.632 5.221A1 1 0 016.5 13H3a1 1 0 110-2h2.765l2.28-7.298A1 1 0 018.973 3z" 
+            clip-rule="evenodd"></path></svg>
+          {% endif %}
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
+    </div>
+    <div class="col-lg-4 py-6">
+      <div class="img-fluid py-3 text-right">
+        <img src="{{url_for('static', filename='/img/coding.jpg')}}" alt="" height="100%" width="100%">
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+
+
+{% endblock %}

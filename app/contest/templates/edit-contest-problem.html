@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="">
+      <div class="row align-items-center flex-wrap-reverse">
+        <div class="col-md-6 py-5 wow zoomIn">
+            <h2 class="text-primary text-center">Edit problem</h2>
+            <hr>
+            <div class="log-modal" id="logModal">
+                <form action="" method="POST">
+                  {{ form.hidden_tag() }}
+                    <div class="form-group">
+                      {{ form.title.label(class='form-control-label')}}
+                      {% if form.title.errors %}
+                        {{ form.title(class='form-control is-invalid', id="prb-name")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.title.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.title(class='form-control', id="prb-name")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.body.label(class='form-control-label')}}
+                      {% if form.body.errors %}
+                        {{ form.body(class='form-control is-invalid', id="prb-name")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.title.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.body(class='form-control', id="prb-password")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.testCase.label(class='form-control-label')}}
+                      {% if form.testCase.errors %}
+                        {{ form.testCase(class='form-control is-invalid', id="prb-testCase")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.testCase.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.testCase(class='form-control', id="prb-testCase")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.testOutput.label(class='form-control-label')}}
+                      {% if form.testOutput.errors %}
+                        {{ form.testOutput(class='form-control is-invalid', id="prb-testCase")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.testOutput.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.testOutput(class='form-control', id="prb-testCase")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.hiddenCase.label(class='form-control-label')}}
+                      {% if form.hiddenCase.errors %}
+                        {{ form.hiddenCase(class='form-control is-invalid', id="prb-password")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.hiddenCase.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.hiddenCase(class='form-control', id="prb-password")}}
+                      {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.hiddenOutput.label(class='form-control-label')}}
+                      {% if form.hiddenOutput.errors %}
+                        {{ form.hiddenOutput(class='form-control is-invalid', id="prb-testCase")}}
+                        <div class="invalid-feedback">
+                          {% for error in form.hiddenOutput.errors %}
+                            <span>{{error}}</span>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        {{ form.hiddenOutput(class='form-control', id="prb-testCase")}}
+                      {% endif %}
+                    </div>
+                  <div class="form-group">
+                    {{ form.submit(class='btn btn-primary btn-lg btn-block mt-2')}}
+                  </div>
+                </form>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger btn-lg btn-block mt-2" data-toggle="modal" data-target="#exampleModalCenter">
+                  Delete
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6 py-5 wow fadeInRight">
+          <div class="img-fluid text-center">
+            <img src="{{url_for('static', filename='img/form.jpg')}}" height="100%" width="100%" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="{{url_for('contestss.deleteContestProblem', prblm_id=id)}}" type="button" class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+      <div class="page-banner">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-md-6">
+            <nav aria-label="Breadcrumb">
+              <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                <li class="breadcrumb-item active">Problems</li>
+              </ul>
+            </nav>
+            <h1 class="text-center">Problems</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+  <div class="page-section" id="about">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-8 py-3">
+    <table id="questions">
+      <tr>
+          <th>Edit</th>
+          <th>Title</th>
+      </tr>
+      {% for question in questions %}
+      {% if question %}
+      <tr>
+          <td>
+          <i><a href="{{url_for('contestss.editContestQuestion', id=question.id)}}" >Edit</a></i>
+        </td>
+          <td class="table-row">{{ question.title }}</td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
+    
+    <a href="addContestProblems-{{contest_id}}" class="btn btn-primary btn-block mt-2">Add problem</a>
+    </div>
+    <div class="col-lg-4 py-6">
+      <div class="img-fluid py-3 text-right">
+        <img src="{{url_for('static', filename='img/coding.jpg')}}" alt="" height="100%" width="70%">
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+
+
+{% endblock %}

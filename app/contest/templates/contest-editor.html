@@ -1,0 +1,73 @@
+{% extends "contest-layout.html" %}
+{% block content %}
+
+<div class="page-section" id="about">
+    <div class="row vh-100">
+      <div class="col-lg-6 p-5 vh-100 overflow-auto">
+        <h5>{{ problem.title }}</h5><hr>
+        <pre id="pb-statement">{{ problem.content }}</pre>
+        <div class="row">
+          <div class="card-service text-left h-25">
+            <div class="header">
+              <h5 class="text-secondary">Sample Input For Question</h5><hr>
+            </div>
+            <div class="body">
+              <p>
+                {% if problem.testCase %}
+                <div id="testInput">
+                  {{ problem.testCase}}
+                </div>
+                {% else %}
+                 <i>Null</i>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+          <div class="card-service text-left">
+            <div class="header">
+              <h5 class="text-secondary">Sample Output For Question</h5><hr>
+            </div>
+            <div class="body">
+              <p id="">{{problem.testOutput}}</p>
+            </div>
+          </div>
+          <div class="card-service text-left">
+            <div class="header">
+              <h5 class="text-secondary">Your Output For Test Case</h5><hr>
+            </div>
+            <div class="body" id="result">
+            </div>
+            <div class="footer" id="status"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-1 p-1 h-100 shadow-lg mb-5 bg-white" id="block">
+        <pre id = "codeBlock" class="h-75 codeBlock"></pre>
+        
+      <div class="container">
+        <select id="languages" >
+          {% for language, codes in languages.items() %}
+              <option value="{{codes[0]}}" id="{{codes[1]}}" class="opt">{{language}}</option>
+          {% endfor %}
+          <option class="opt" selected>Choose Language</option>
+        </select>
+        <svg xmlns="http://www.w3.org/2000/svg" cursor="pointer" width="24" height="24" fill="black" class="bi bi-fullscreen" onclick="goFullScreen();" viewBox="0 0 16 16" id="bi-fullscreen">
+          <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+        <div class='btn btn-primary' onclick="run('run');">Run</div>
+        <div class='btn btn-success' onclick="run('submit')";>Submit</div>
+      </div>
+      <div id="submit"></div>
+    </div>
+  </div>
+</div>
+
+<div style="display:none" id="problem">{{problem.id}}</div>
+<div style="display:none" id="test-input">{{problem.testCase}}</div>
+<div style="display:none" id="test-output">{{problem.testOutput}}</div>
+<div style="display:none" id="hidden-input">{{problem.hiddenCase}}</div>
+<div style="display:none" id="hidden-output">{{problem.hiddenOutput}}</div>
+<div style="display:none" id="user_id">{{id}}c</div>
+
+
+{% endblock %}
