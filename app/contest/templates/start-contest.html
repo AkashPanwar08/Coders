@@ -32,7 +32,7 @@
       {% if problem %}
       <tr>
         <td>{{loop.index}}</td>
-        <td class="table-row"><a href="contest-editor-{{problem.id}}">{{ problem.title }}</a></td>
+        <td class="table-row"><a href="contest-editor-{{problem.id}}-{{contest_id}}">{{ problem.title }}</a></td>
         <td>
           {% if solution.query.filter_by(student_id=current_user.id, question_id=problem.id).first().submitted == true %}
             <svg xmlns="http://www.w3.org/2000/TR/SVG" viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor" 

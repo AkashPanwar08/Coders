@@ -9,7 +9,6 @@ login_manager = LoginManager()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 mail = Mail()
-login_ip = dict()
 
 
 def create_app(config_class=Config):

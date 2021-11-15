@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, url_for, flash, redirect, request
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app.students.forms import StudentForm, SearchForm, ResetPasswordForm, RequestResetForm
 from app import db, bcrypt, login_manager
 from app.models import Student,  Solutions, Problems, Subjects, Admin
@@ -16,6 +16,7 @@ def load_student(username):
 
 
 @students.route('/add-students', methods=['GET', 'POST'])
+@login_required
 def addstudents():
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         flash('Not valid admin')
@@ -37,6 +38,7 @@ def addstudents():
 
 
 @students.route('/student-details', methods=['GET', 'POST'])
+@login_required
 def studentDetails():
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         flash('Not valid admin')
@@ -108,6 +110,7 @@ def resetToken(token):
     return render_template('reset_token.html', form=form, token=token)
 
 @students.route('/edit-student-<student_id>', methods=['GET', 'POST'])
+@login_required
 def editStudentDetails(student_id):
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         flash('Not valid admin')
@@ -136,6 +139,7 @@ def editStudentDetails(student_id):
     return render_template('edit-student.html', form=form, id=student_id)
 
 @students.route('/delete-student-<student_id>', methods=['GET', 'POST'])
+@login_required
 def deleteStudent(student_id):
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         flash('Not valid admin')

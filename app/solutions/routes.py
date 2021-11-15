@@ -1,5 +1,5 @@
 from flask import Blueprint, url_for, request, flash, redirect
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app.models import Solutions
 from app import db
 
@@ -8,6 +8,7 @@ solutionss = Blueprint('solutionss', __name__, template_folder='templates')
 
 
 @solutionss.route('/solution', methods=['GET', 'POST'])
+@login_required
 def soltuion():
     if current_user.is_authenticated:
         data = request.get_json()

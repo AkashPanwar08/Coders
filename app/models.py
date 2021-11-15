@@ -114,17 +114,13 @@ class ContestSolutions(db.Model):
     submitted = db.Column(db.Boolean, default=False)
     
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'), nullable=False)
-    student_id = db.Column(db.String(20), db.ForeignKey('register.rollNo'), nullable=False)
-    __table_args__ = (
-        db.UniqueConstraint('question_id','student_id'),
-        )
+    student_id = db.Column(db.String(20), nullable=False)
 
 class Register(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     contestId = db.Column(db.Integer, nullable=False)
-    rollNo = db.Column(db.String(20), nullable=False, unique=True)
+    rollNo = db.Column(db.String(20), nullable=False)
     submitTime = db.Column(db.DateTime())
     count = db.Column(db.Integer, nullable=False, default=0)
     
-    contest_solutions = db.relationship('ContestSolutions', cascade="all,delete", backref='author', lazy=True)
 

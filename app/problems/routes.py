@@ -20,6 +20,7 @@ def problems(sub_id):
 
 
 @problemss.route('/add-problem-<id>', methods=['GET', 'POST'])
+@login_required
 def addProblem(id):
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         return redirect(url_for('main.index'))
@@ -38,6 +39,7 @@ def addProblem(id):
 
 
 @problemss.route('/edit-problem-<prblm_id>', methods=['Get', 'POST'])
+@login_required
 def editProblem(prblm_id):
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         flash('Not valid admin')
@@ -69,6 +71,7 @@ def editProblem(prblm_id):
 
 
 @problemss.route('/delete-problem-<prblm_id>')
+@login_required
 def deleteProblem(prblm_id):
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         flash('Not valid admin')

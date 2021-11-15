@@ -1,6 +1,6 @@
 var url_ ;
-var input = jQuery('#test-input').text();
-var output = jQuery('#test-output').text()
+var input = '{{problem.testCase}}';
+var output = '{{problem.testOutput}}';
 
 
 
@@ -8,8 +8,8 @@ function makePostRequest(path, btn) {
   return new Promise(function (resolve, reject) {
     var codeValue = globalVariable.editorCodeBlock.getValue();
     if(btn == 'submit'){
-      input = jQuery('#hidden-input').text();
-      output = jQuery('#hidden-output').text();
+      input = '{{problem.hiddenCase}}';
+      output = '{{problem.hiddenOutput}}';
     }
 
     const data = {
@@ -89,6 +89,7 @@ async function run(btn) {
       "content": codeContent,
       "problem_id": problem_id,
       "submitted": submitted,
+      "contest_id": contest_id,
     }
     fetch("contest-solution",{
       method: 'POST',

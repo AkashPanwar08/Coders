@@ -29,15 +29,20 @@
             
           </div>
           <div class="row ml-4 pb-4">
-            <div class="col-lg-2 text-secondary"><b>Date:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-2 text-secondary">
+              <b>Start Date:</b><br>{{contest.startTime.strftime('%d-%m-%Y')}}
+              <b>End Date:</b><br>{{contest.endTime.strftime('%d-%m-%Y')}}
+            </div>
             <div class="col-lg-6">
-              <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
-              <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
-              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
+              <b class="text-secondary">Start time:</b> {{contest.startTime.strftime('%I:%M:%S %p')}}<br>
+              <b class="text-secondary">End Time:</b> {{contest.endTime.strftime('%I:%M:%S %p')}}<br>
+              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}} hours<br>
+              <b class="text-secondary">Day:</b> {{contest.startTime.strftime('%A')}}
             </div>
             <div class="col-lg-4">
               {% if register.query.filter_by(rollNo=id, contestId=contest.id).all() %}
-              <a href="{{url_for('contestss.startContest', contest_id=contest.id)}}" class="btn btn-outline-success btn-sm">Open</a>
+              <a href="{{url_for('contestss.startContest', contest_id=contest.id)}}" class="btn btn-outline-success btn-sm">Open</a><br><br>
+              <a href="{{url_for('contestss.contestRanks', contest_id=contest.id)}}" class="btn btn-outline-primary btn-sm">Ranks</a>
               {% else %}
                 <a href="{{url_for('contestss.register', contest_id=contest.id)}}" class="btn btn-outline-primary btn-sm">Register</a>
               {% endif %}
@@ -63,11 +68,15 @@
             
           </div>
           <div class="row ml-4 pb-4">
-            <div class="col-lg-2 text-secondary"><b>Date:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-2 text-secondary">
+              <b>Start Date:</b><br>{{contest.startTime.strftime('%d-%m-%Y')}}
+              <b>End Date:</b><br>{{contest.endTime.strftime('%d-%m-%Y')}}
+            </div>
             <div class="col-lg-6">
-              <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
-              <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
-              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
+              <b class="text-secondary">Start time:</b> {{contest.startTime.strftime('%I:%M:%S %p')}}<br>
+              <b class="text-secondary">End Time:</b> {{contest.endTime.strftime('%I:%M:%S %p')}}<br>
+              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}} hours<br>
+              <b class="text-secondary">Day:</b> {{contest.startTime.strftime('%A')}}
             </div>
             <div class="col-lg-4">
               {% if register.query.filter_by(rollNo=id, contestId=contest.id).all() %}
@@ -100,14 +109,18 @@
             
           </div>
           <div class="row ml-4 pb-4">
-            <div class="col-lg-2 text-secondary"><b>Date:</b><br>{{contest.startTime}}</div>
+            <div class="col-lg-2 text-secondary">
+              <b>Start Date:</b><br>{{contest.startTime.strftime('%d-%m-%Y')}}
+              <b>End Date:</b><br>{{contest.endTime.strftime('%d-%m-%Y')}}
+            </div>
             <div class="col-lg-6">
-              <b class="text-secondary">Start time:</b> {{contest.startTime}}<br>
-              <b class="text-secondary">End Time:</b> {{contest.endTime}}<br>
-              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}
+              <b class="text-secondary">Start time:</b> {{contest.startTime.strftime('%I:%M:%S %p')}}<br>
+              <b class="text-secondary">End Time:</b> {{contest.endTime.strftime('%I:%M:%S %p')}}<br>
+              <b class="text-secondary">Duration:</b> {{contest.endTime - contest.startTime}}<br>
+              <b class="text-secondary">Day:</b> {{contest.startTime.strftime('%A')}}
             </div>
             <div class="col-lg-4">
-              <a href="contest-ranks" class="btn btn-primary btn-sm">Check Ranks</a>
+              <a href="{{url_for('contestss.contestRanks', contest_id=contest.id)}}" class="btn btn-outline-primary btn-sm">Ranks</a>
             </div>
           </div>
         </div>

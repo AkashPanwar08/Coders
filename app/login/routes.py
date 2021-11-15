@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
-from app import bcrypt, login_ip
+from app import bcrypt
 from app.models import Student, Admin
 from flask_login import login_user, logout_user, current_user
 from app.login.forms import LoginForm
@@ -15,7 +15,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         student = Student.query.filter_by(id=form.username.data).first()
-        if student and bcrypt.check_password_hash(student.password, form.password.data):
+        if student and bcrypt.check_password_hash(student.password, form.password.data):    
             login_user(student)
             return redirect(url_for('subjectss.subjects'))
         else:

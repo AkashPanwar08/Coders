@@ -1,9 +1,10 @@
 var codeContent = 'Choose a language to start.';
 jQuery('#codeBlock').html('');
-var problem_id = jQuery('#problem').text();
+var problem_id = '{{problem.id}}';
 var judgeLangId =  71;
 var responseLang = 'python';
-current_user_id = jQuery('#user_id').text();
+current_user_id = '{{id}}c';
+var contest_id = '{{contest_id}}';
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;

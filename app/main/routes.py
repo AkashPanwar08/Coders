@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, url_for, flash, redirect
-from flask_login import current_user, login_manager
+from flask_login import current_user
 import requests
 from app.codes import languages
 from app.models import Admin, Problems

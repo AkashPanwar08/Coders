@@ -1,14 +1,14 @@
 from flask import Blueprint, render_template, url_for, request, flash, redirect
 from app.subjects.forms import SubjectForm
 from app.models import Subjects, Admin, Semester
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app import db
 
 subjectss = Blueprint('subjectss', __name__, template_folder='templates')
 
 @subjectss.route('/subjects')
+@login_required
 def subjects():
-
     if isinstance(current_user, Admin):
         return redirect(url_for('subjectss.admin'))
     if not current_user.is_authenticated:
@@ -20,12 +20,14 @@ def subjects():
 
 
 @subjectss.route('/admin')
+@login_required
 def admin():
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         return redirect(url_for('main.index'))
-    return render_template('admin.html', subjects=Subjects, semester=Semester, db=db, i=1)
+    return render_template('admin.html', subjects=Subjects, semester=Semester, db=db, i=1, active3='active')
 
 @subjectss.route('/admin-new-sub-<int:sem>', methods=['GET', 'POST'])
+@login_required
 def adminNewSub(sem):
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         flash('Not valid admin')
@@ -47,6 +49,7 @@ def adminNewSub(sem):
 
 
 @subjectss.route('/edit-<sub_id>', methods=['Get', 'POST'])
+@login_required
 def edit(sub_id):
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         flash('Not valid admin')
@@ -74,6 +77,7 @@ def edit(sub_id):
     return render_template('edit.html', form=form, id=sub_id)
     
 @subjectss.route('/delete-<sub_id>')
+@login_required
 def delete(sub_id):
     if not (current_user.is_authenticated and isinstance(current_user, Admin)):
         flash('Not valid admin')

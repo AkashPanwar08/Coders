@@ -5,10 +5,12 @@ from app import db
 from app.contest.forms import Contest, Question
 from datetime import datetime
 from app.codes import languages
+from flask_paginate import Pagination, get_page_parameter
 
 contestss = Blueprint('contestss', __name__, template_folder='templates')
 
 @contestss.route('/contests')
+@login_required
 def contests():
     if current_user.is_authenticated and isinstance(current_user, Student):
         return redirect(url_for('contestss.studentContest'))
@@ -178,21 +180,22 @@ def startContest(contest_id):
     con = Contests.query.filter_by(id=contest_id).first()
     if con.startTime < datetime.now() and con.endTime > datetime.now():
         questions = Questions.query.filter_by(contest_id=contest_id).all()
-        return render_template('start-contest.html', questions=questions, solution=ContestSolutions)
+        return render_template('start-contest.html', questions=questions, solution=ContestSolutions, contest_id=contest_id)
     else:
         flash('This contest can not be started right now.', 'danger')
         return redirect(url_for('contestss.contests'))
 
-@contestss.route('/contest-editor-<question_id>', methods=['GET', 'POST'])
+@contestss.route('/contest-editor-<question_id>-<contest_id>', methods=['GET', 'POST'])
 @login_required
-def contestEditor(question_id):
+def contestEditor(question_id, contest_id):
     if not (current_user.is_authenticated and isinstance(current_user, Student)):
         flash('Please login with student ID')
         return redirect(url_for('main.login'))
     problem=Questions.query.filter_by(id=question_id).first()
-    return render_template('contest-editor.html', languages=languages, problem=problem, id=current_user.id)
+    return render_template('contest-editor.html', languages=languages, problem=problem, id=current_user.id,contest_id=contest_id)
 
 @contestss.route('/contest-solution', methods=['GET', 'POST'])
+@login_required
 def contestSoltuion():
     if current_user.is_authenticated:
         data = request.get_json()
@@ -202,7 +205,7 @@ def contestSoltuion():
             sol.monacoLanguageId = data['monaco_language_id']
             sol.judgeLanguageId = data['judge_language_id']
             sol.submitted = data['submitted'] or sol.submitted
-            sol.submitTime = datetime.now()
+            sol.submitTime = sol.submitTime
             try:
                 db.session.commit()
             except Exception as e:
@@ -211,7 +214,7 @@ def contestSoltuion():
             sol = ContestSolutions(judgeLanguageId=data['judge_language_id'], monacoLanguageId = data['monaco_language_id'],
                             content = data['content'], submitted = data['submitted'],question_id = data['problem_id'],
                             student_id = current_user.id, submitTime=datetime.now())
-            regis = Register.query.filter_by(rollNo=current_user.id).first()
+            regis = Register.query.filter_by(rollNo=current_user.id, contestId=data['contest_id']).first()
             regis.submitTime = datetime.now()
             regis.count+=1
             try:
@@ -219,7 +222,7 @@ def contestSoltuion():
                 db.session.commit()
             except Exception as e:
                 db.session.rollback()
-        return redirect(url_for('contestss.contestEditor', question_id=data['problem_id']))
+        return redirect(url_for('contestss.contestEditor', question_id=data['problem_id'], contest_id=data['contest_id']))
 
 @contestss.route('/contest-ranks-<contest_id>', methods=['GET', 'POST'])
 @login_required
@@ -227,5 +230,18 @@ def contestRanks(contest_id):
     if not (current_user.is_authenticated and isinstance(current_user, Student)):
         flash('Please login with student ID')
         return redirect(url_for('main.login'))
+
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    PAGE_SIZE = 10
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+
     ranks = Register.query.filter_by(contestId=contest_id).order_by(Register.count.desc(), Register.submitTime)
-    return render_template('contest-ranks.html', ranks=ranks)
+
+    pagination = Pagination(page=page, total=ranks.count(), search=search, inner_window=1, outer_window=0, record_name='ranks', per_page=PAGE_SIZE)
+
+    ranks = ranks.paginate(page=page, per_page=PAGE_SIZE)
+
+    return render_template('contest-ranks.html', ranks=ranks, pagination=pagination)

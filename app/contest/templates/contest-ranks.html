@@ -3,26 +3,48 @@
 
 <div class="container">
     <div class="row">
-        <table id="questions">
+        <table class="table table-striped" id="problems">
             <tr>
                 <th>Ranks</th>
                 <th>Roll no.</th>
-                <th>Submission Time</th>
+                <th>Finish date</th>
+                <th>Finish Time</th>
+                <th>Score</th>
             </tr>
-            {%for rank in ranks %}
+            {%for rank in ranks.items %}
                 <tr class="">
                     <td>
-                        {{loop.index}}
+                        {{loop.index + pagination.skip}}
                     </td>
                     <td>
                         {{rank.rollNo}}<br>
                     </td>
                     <td>
-                        {{rank.submitTime}}
+                        {%if rank.submitTime %}
+                        {{rank.submitTime.strftime('%d-%m-%Y')}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {%if rank.submitTime %}
+                        {{rank.submitTime.strftime('%I:%M:%S %p')}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{rank.count*100}}
                     </td>
                 </tr>
             {% endfor %}
         </table>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            {{ pagination.links }}
+        </div>
+        <div class="col-lg-8 text-right">
+            {{ pagination.info}}
+        </div>
     </div>
 </div>
 {% endblock %}
