@@ -1,7 +1,6 @@
   var url_ ;
   var input = jQuery('#test-input').text();
-  var output = jQuery('#test-output').text()
-
+  var output = jQuery('#test-output').text();
 
 
   function makePostRequest(path, btn) {

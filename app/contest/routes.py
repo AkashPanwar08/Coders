@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import current_user, login_required
 from app.models import Contests, Admin, Student, Questions, Register, ContestSolutions
-from app import db
+from app import db, login_manager
 from app.contest.forms import Contest, Question
 from datetime import datetime
 from app.codes import languages
@@ -245,3 +245,7 @@ def contestRanks(contest_id):
     ranks = ranks.paginate(page=page, per_page=PAGE_SIZE)
 
     return render_template('contest-ranks.html', ranks=ranks, pagination=pagination)
+
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/login')

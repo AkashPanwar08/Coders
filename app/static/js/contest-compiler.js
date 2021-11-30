@@ -1,15 +1,17 @@
 var url_ ;
-var input = '{{problem.testCase}}';
-var output = '{{problem.testOutput}}';
-
-
-
+var input;
+var output;
+console.log(a);
 function makePostRequest(path, btn) {
   return new Promise(function (resolve, reject) {
     var codeValue = globalVariable.editorCodeBlock.getValue();
     if(btn == 'submit'){
-      input = '{{problem.hiddenCase}}';
-      output = '{{problem.hiddenOutput}}';
+      input = jQuery('#hidden-input').text();
+      output = jQuery('#hidden-output').text();
+    }
+    else if(btn == 'run'){
+      input = jQuery('#test-input').text();
+      output = jQuery('#test-output').text();
     }
 
     const data = {
