@@ -1,4 +1,4 @@
 applications:
 - name: mietian-coders
-  memory: 512M
+  memory: 256M
   command: python run.py

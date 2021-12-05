@@ -200,7 +200,7 @@ def contestSoltuion():
     if current_user.is_authenticated:
         data = request.get_json()
         try:
-            sol = ContestSolutions.query.filter_by(student_id=current_user.id, problem_id=data['problem_id']).first()
+            sol = ContestSolutions.query.filter_by(student_id=current_user.id, question_id=data['problem_id']).first()
             sol.content = data['content']
             sol.monacoLanguageId = data['monaco_language_id']
             sol.judgeLanguageId = data['judge_language_id']
