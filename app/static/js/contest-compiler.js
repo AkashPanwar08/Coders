@@ -32,7 +32,7 @@ function makePostRequest(path, btn) {
       return response.json();
     })
     .then((data) => {
-        url_ = 'http://localhost:2358//submissions/' + data.token + '?base64_encoded=false&fields';
+        url_ = 'http://3.110.153.89/submissions/' + data.token + '?base64_encoded=false&fields';
         if(btn == 'run')
           jQuery('#result').html('Processing...');
         else if(btn == 'submit')
@@ -63,7 +63,7 @@ function makeGetRequest(path) {
   });
 }
 async function run(btn) {
-  var url = 'http://localhost:2358/submissions/?base64_encoded=false&wait=false';
+  var url = 'http://3.110.153.89/submissions/?base64_encoded=false&wait=false';
   var result_url = await makePostRequest(url, btn);
   var result = await makeGetRequest(result_url);
   var submitted = false;

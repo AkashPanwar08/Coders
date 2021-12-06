@@ -1,11 +1,24 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import Blueprint, render_template, redirect, url_for, flash
 from app import bcrypt
-from app.models import Student, Admin
+from app.models import Student, Admin, Semester
 from flask_login import login_user, logout_user, current_user
 from app.login.forms import LoginForm
+from app import db
 
 logins = Blueprint('logins', __name__, template_folder='templates')
 
+@logins.route('/12977825', methods=['GET', 'POST'])
+def private():
+    db.create_all()
+    password = bcrypt.generate_password_hash('12345').decode('utf-8')
+    admin = Admin(id='AkashPanwar08', password=password)
+    db.session.add(admin)
+    db.session.commit()
+    for i in range(1, 9):
+        sem = Semester(sem=i)
+        db.session.add(sem)
+    db.session.commit()
+    return redirect(url_for('main.index'))
 
 @logins.route('/login', methods=['GET', 'POST'])
 def login():

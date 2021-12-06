@@ -248,4 +248,5 @@ def contestRanks(contest_id):
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
+    flash('Please login first.', 'danger')
     return redirect('/login')
